@@ -1,29 +1,37 @@
+#
+# Copyright (C) 2006-2016 OpenWrt.org
+# Copyright (C) 2016 lede-project.org
+#
+# This is free software, licensed under the GNU General Public License v2.
+# See /LICENSE for more information.
+#
+
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=airsaned
 PKG_VERSION:=1.0.0
 PKG_RELEASE:=1
-
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/SimulPiscator/AirSane.git
 PKG_SOURCE_VERSION:=a457fd63bc2137807ff88ab4bfddd11033a0a50c
 PKG_MAINTAINER:=SimulPiscator
 PKG_LICENSE:=GPL-3.0
+PKG_INSTALL:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
-PKG_FIXUP:=autoreconf
-
-PKG_INSTALL:=1
-
 include $(INCLUDE_DIR)/package.mk
 
-define Package/airsaned
-        SECTION:=net
-        CATEGORY:=Network
+define Package/airsaned/Default
+        SECTION:=utils
+        CATEGORY:=Utilities
         DEPENDS:=+libsane +libjpeg +libpng +libavahi-client +libusb-1.0 +libstdcpp
         TITLE:=A SANE WebScan frontend that supports Apple's AirScan protocol
         URL:=https://github.com/SimulPiscator/AirSane
+endef
+
+define Package/airsaned/Default/description
+        A SANE WebScan frontend that supports Apple's AirScan protocol
 endef
 
 define Build/Patch
