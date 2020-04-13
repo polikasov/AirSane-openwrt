@@ -14,7 +14,7 @@ PKG_RELEASE:=1
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/SimulPiscator/AirSane.git
 PKG_SOURCE_VERSION:=a457fd63bc2137807ff88ab4bfddd11033a0a50c
-PKG_MAINTAINER:=SimulPiscator
+PKG_MAINTAINER:=SimulPiscator <example@example.com>
 PKG_LICENSE:=GPL-3.0
 PKG_INSTALL:=1
 
@@ -22,16 +22,16 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/airsaned/Default
-        SECTION:=utils
-        CATEGORY:=Utilities
-        DEPENDS:=+libsane +libjpeg +libpng +libavahi-client +libusb-1.0 +libstdcpp
-        TITLE:=A SANE WebScan frontend that supports Apple's AirScan protocol
-        URL:=https://github.com/SimulPiscator/AirSane
+define Package/airsaned
+  TITLE:=A SANE WebScan frontend that supports Apple's AirScan protocol
+  URL:=https://github.com/SimulPiscator/AirSane
+  SECTION:=utils
+  CATEGORY:=Utilities
+  DEPENDS:=+libsane +libjpeg +libpng +libavahi-client +libusb-1.0 +libstdcpp
 endef
 
-define Package/airsaned/Default/description
-        A SANE WebScan frontend that supports Apple's AirScan protocol
+define Package/airsaned/description
+  A SANE WebScan frontend that supports Apple's AirScan protocol
 endef
 
 define Build/Patch
@@ -54,3 +54,5 @@ define Package/airsaned/install
         $(INSTALL_DIR) $(1)/etc/init.d/
         $(INSTALL_BIN) files/airsaned.init $(1)/etc/init.d/airsaned
 endef
+
+$(eval $(call BuildPackage,airsaned))
