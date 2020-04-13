@@ -46,5 +46,3 @@ define Package/airsaned/install
         $(INSTALL_DIR) $(1)/etc/init.d/
         $(INSTALL_BIN) files/airsaned.init $(1)/etc/init.d/airsaned
 endef
-
-$(eval $(call BuildPackage,airsaned))
