@@ -35,24 +35,24 @@ define Package/airsaned/description
 endef
 
 define Build/Patch
-        patch ./imageformats/pngencoder.cpp patches/001-png.patch
+	patch ./imageformats/pngencoder.cpp patches/001-png.patch
 endef
 
 define Build/Prepare
-        $(Build/Patch)
-        mkdir -p $(PKG_BUILD_DIR)
-        cmake -DCMAKE_C_COMPILER=$(TARGET_CC) -DCMAKE_CXX_COMPILER=$(TARGET_CXX) -B $(PKG_BUILD_DIR)
+	$(Build/Patch)
+	mkdir -p $(PKG_BUILD_DIR)
+	cmake -DCMAKE_C_COMPILER=$(TARGET_CC) -DCMAKE_CXX_COMPILER=$(TARGET_CXX) -B $(PKG_BUILD_DIR)
 endef
 
 define Build/Compile
-        (cd $(PKG_BUILD_DIR); make)
+	(cd $(PKG_BUILD_DIR); make)
 endef
 
 define Package/airsaned/install 
-        $(INSTALL_DIR) $(1)/usr/bin
-        $(INSTALL_BIN) $(PKG_BUILD_DIR)/airsaned $(1)/usr/bin/
-        $(INSTALL_DIR) $(1)/etc/init.d/
-        $(INSTALL_BIN) files/airsaned.init $(1)/etc/init.d/airsaned
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/airsaned $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/etc/init.d/
+	$(INSTALL_BIN) files/airsaned.init $(1)/etc/init.d/airsaned
 endef
 
 $(eval $(call BuildPackage,airsaned))
