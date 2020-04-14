@@ -32,10 +32,10 @@ define Package/airsaned/description
 endef
 
 define Package/airsaned/install 
-        $(INSTALL_DIR) $(1)/usr/bin
-        $(INSTALL_BIN) $(PKG_BUILD_DIR)/airsaned $(1)/usr/bin/
-        $(INSTALL_DIR) $(1)/etc/init.d/
-        $(INSTALL_BIN) files/airsaned.init $(1)/etc/init.d/airsaned
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/airsaned $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/etc/init.d/
+	$(INSTALL_BIN) files/airsaned.init $(1)/etc/init.d/airsaned
 endef
 
 $(eval $(call BuildPackage,airsaned))
