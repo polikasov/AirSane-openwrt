@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=airsaned
-PKG_VERSION:=1.0.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/SimulPiscator/AirSane.git
 PKG_SOURCE_VERSION:=a457fd63bc2137807ff88ab4bfddd11033a0a50c
+PKG_SOURCE_DATE:=2020-04-13
 
 PKG_MAINTAINER:=SimulPiscator <example@example.com>
 PKG_LICENSE:=GPL-3.0
@@ -30,15 +30,11 @@ define Package/airsaned/description
   A SANE WebScan frontend that supports Apple's AirScan protocol
 endef
 
-define Build/Patch
-        patch --merge $(PKG_BUILD_DIR)/imageformats/pngencoder.cpp -i ./patches/001-png.patch
-endef
-
 define Package/airsaned/install 
         $(INSTALL_DIR) $(1)/usr/bin
         $(INSTALL_BIN) $(PKG_BUILD_DIR)/airsaned $(1)/usr/bin/
         $(INSTALL_DIR) $(1)/etc/init.d/
-        $(INSTALL_BIN) files/airsaned.init $(1)/etc/init.d/airsaned
+        $(INSTALL_BIN) ./files/airsaned.init $(1)/etc/init.d/airsaned
 endef
 
 $(eval $(call BuildPackage,airsaned))
