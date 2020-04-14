@@ -13,7 +13,7 @@ start_instance() {
 	local mdns_announce
 	local local_scanners_only
 
-	config_get interface "$cfg" 'interface' *
+	config_get interface "$cfg" 'interface' br-lan
 	config_get port "$cfg" 'port' 8090
 	config_get access_log "$cfg" 'access_log'
 	config_get hotplug "$cfg" 'hotplug' true
