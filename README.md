@@ -1,10 +1,11 @@
 # AirSane for OpenWRT
+This repository contains OpenWRT package for the AirSane project at https://github.com/SimulPiscator/AirSane
 ## Usage
 ### Download OpenWRT SDK
 The easiest way is to use Docker image\
 https://hub.docker.com/r/openwrtorg/sdk
 ### Prepare
-Add repo
+Add repository
 ```
 echo "src-git airsaned https://github.com/tbaela/AirSane-openwrt.git" >> feeds.conf.default
 ```
