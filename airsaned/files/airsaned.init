@@ -21,8 +21,7 @@ start_instance() {
 	config_get local_scanners_only "$cfg" 'local_scanners_only' true
 
 	procd_open_instance
-	procd_set_param command /usr/bin/airsaned --interface=$interface --listen-port=$port --access-log=$access
-_log --hotplug=$hotplug --mdns-announce=$mdns_announce --local-scanners-only=$local_scanners_only
+	procd_set_param command /usr/bin/airsaned --interface=$interface --listen-port=$port --access-log=$access_log --hotplug=$hotplug --mdns-announce=$mdns_announce --local-scanners-only=$local_scanners_only
 	procd_set_param file /etc/config/airsaned
 	procd_close_instance
 }
