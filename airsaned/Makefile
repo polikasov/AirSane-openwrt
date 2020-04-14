@@ -16,6 +16,7 @@ PKG_FIXUP:=autoreconf
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/airsaned
   TITLE:=A SANE WebScan frontend that supports Apple's AirScan protocol
@@ -30,25 +31,14 @@ define Package/airsaned/description
 endef
 
 define Build/Patch
-	patch --merge $(PKG_BUILD_DIR)/imageformats/pngencoder.cpp -i ./patches/001-png.patch
-endef
-
-define Build/Prepare
-	$(Build/Prepare/Default)
-	$(Build/Patch)
-	mkdir -p $(PKG_BUILD_DIR)/build
-	cmake -DCMAKE_C_COMPILER=$(TARGET_CC) -DCMAKE_CXX_COMPILER=$(TARGET_CXX) -B $(PKG_BUILD_DIR)/build -S $(PKG_BUILD_DIR)
-endef
-
-define Build/Compile
-        (cd $(PKG_BUILD_DIR)/build; make)
+        patch --merge $(PKG_BUILD_DIR)/imageformats/pngencoder.cpp -i ./patches/001-png.patch
 endef
 
 define Package/airsaned/install 
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build/airsaned $(1)/usr/bin/
-	$(INSTALL_DIR) $(1)/etc/init.d/
-	$(INSTALL_BIN) files/airsaned.init $(1)/etc/init.d/airsaned
+        $(INSTALL_DIR) $(1)/usr/bin
+        $(INSTALL_BIN) $(PKG_BUILD_DIR)/airsaned $(1)/usr/bin/
+        $(INSTALL_DIR) $(1)/etc/init.d/
+        $(INSTALL_BIN) files/airsaned.init $(1)/etc/init.d/airsaned
 endef
 
 $(eval $(call BuildPackage,airsaned))
