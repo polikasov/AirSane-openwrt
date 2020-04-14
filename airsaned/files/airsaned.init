@@ -1,0 +1,29 @@
+#!/bin/sh /etc/rc.common
+START=95
+STOP=10
+
+USE_PROCD=1
+
+start_service() {
+	local cfg='global'
+	local interface
+	local port
+	local access_log
+	local hotplug
+	local mdns_announce
+	local local_scanners_only
+	local debug
+
+	config_get interface "$cfg" 'interface' br-lan
+	config_get port "$cfg" 'port' 8090
+	config_get access_log "$cfg" 'access_log'
+	config_get hotplug "$cfg" 'hotplug' true
+	config_get mdns_announce "$cfg" 'mdns_announce' true
+	config_get local_scanners_only "$cfg" 'local_scanners_only' true
+	config_get debug "$cfg" 'debug' false
+
+	procd_open_instance
+	procd_set_param command /usr/bin/airsaned --interface=$interface --listen-port=$port --access-log=$access_log --hotplug=$hotplug --mdns-announce=$mdns_announce --local-scanners-only=$local_scanners_only --debug=$debug
+	procd_set_param file /etc/config/airsaned
+	procd_close_instance
+}
