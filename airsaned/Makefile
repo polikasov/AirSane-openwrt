@@ -5,8 +5,9 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/SimulPiscator/AirSane.git
-PKG_SOURCE_VERSION:=a457fd63bc2137807ff88ab4bfddd11033a0a50c
+PKG_SOURCE_VERSION:=a457fd6
 PKG_SOURCE_DATE:=2020-04-13
+PKG_VERSION:=${PKG_SOURCE_DATE}-$(PKG_SOURCE_VERSION)
 
 PKG_MAINTAINER:=SimulPiscator <example@example.com>
 PKG_LICENSE:=GPL-3.0
@@ -34,7 +35,7 @@ define Package/airsaned/install
         $(INSTALL_DIR) $(1)/usr/bin
         $(INSTALL_BIN) $(PKG_BUILD_DIR)/airsaned $(1)/usr/bin/
         $(INSTALL_DIR) $(1)/etc/init.d/
-        $(INSTALL_BIN) ./files/airsaned.init $(1)/etc/init.d/airsaned
+        $(INSTALL_BIN) files/airsaned.init $(1)/etc/init.d/airsaned
 endef
 
 $(eval $(call BuildPackage,airsaned))
