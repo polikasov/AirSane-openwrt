@@ -19,12 +19,18 @@ make package/airsaned/compile V=s -j <CORES_NUM>
 ```
 
 ### Install
-1) Copy package to temp folder on your router\
-```scp bin/packages/<ARCH>/airsaned/airsaned-<VERSION>.ipk root@<YOUR_ROUTER_IP>:/tmp```
-2) Login via ssh\
-```ssh root@<YOUR_ROUTER_IP>```
-3) Install package via opkg\
-```opkg install /tmp/airsaned-<VERSION>.ipk```
+1) Copy package to temp folder on your router
+```
+scp bin/packages/<ARCH>/airsaned/airsaned-<VERSION>.ipk root@<YOUR_ROUTER_IP>:/tmp
+```
+2) Login via ssh
+```
+ssh root@<YOUR_ROUTER_IP>
+```
+3) Install package via opkg
+```
+opkg install /tmp/airsaned-<VERSION>.ipk
+```
 
 ### Configure
 You can edit configuration here\
