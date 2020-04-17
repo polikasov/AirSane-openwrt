@@ -1,6 +1,6 @@
 config airsaned 'global'
 	option interface 		'br-lan'
-	option port			'8089'
+	option port			'8090'
 	option access_log		''
 	option hotplug			'true'
 	option mdns_announce		'true'
