@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'airsaned/**'
+      - '.github/**'
 
 jobs:
   build:
