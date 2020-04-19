@@ -19,4 +19,4 @@ jobs:
       - name: Install feeds
         run: ./scripts/feeds install -a
       - name: Compile
-        run: make packages/airsaned/compile V=s
+        run: echo -e "Using $(nproc) threads" && make package/airsaned/compile V=s -j$(nproc)
