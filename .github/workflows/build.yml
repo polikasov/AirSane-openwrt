@@ -15,7 +15,7 @@ jobs:
         working-directory: /home/build/openwrt
     steps:
       - name: Add feeds
-        run: echo "src-git airsaned https://github.com/tbaela/AirSane-openwrt.git;${GITHUB_REF}" >> feeds.conf.default
+        run: echo "src-git airsaned https://github.com/tbaela/AirSane-openwrt.git^${GITHUB_SHA}" >> feeds.conf.default
       - name: Update feeds
         run: ./scripts/feeds update base packages airsaned
       - name: Make defconfig
