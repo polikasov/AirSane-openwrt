@@ -1,3 +1,4 @@
+![GITHUB-BADGE](https://github.com/tbaela/AirSane-openwrt/workflows/Build/badge.svg)
 # AirSane for OpenWRT
 This repository contains OpenWRT package for the AirSane project at https://github.com/SimulPiscator/AirSane
 ## Usage
