@@ -1,0 +1,17 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://openwrtorg/sdk:ramips-mt7621-19.07.2
+      - name: Add feeds
+        run: echo "src-git airsaned https://github.com/tbaela/AirSane-openwrt.git" >> feeds.conf.default
+      - name: Update feeds
+        run: ./scripts/feeds update -a
+      - name: Install feeds
+        run: ./scripts/feeds install -a
+      - name: Compile
+        run: make packages/airsaned/compile V=s
