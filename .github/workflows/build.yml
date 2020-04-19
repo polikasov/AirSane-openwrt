@@ -6,9 +6,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: openwrtorg/sdk:ramips-mt7621-19.07.2
+    defaults:
+      run:
+        working-directory: /home/build/openwrt
     steps:
       - name: debug
-        run: cd /home/build/openwrt && ls -la && whoami && chmod -R 777 /home/build/openwrt
+        run: pwd && ls -la
       - name: Add feeds
         run: echo "src-git airsaned https://github.com/tbaela/AirSane-openwrt.git" >> feeds.conf.default
       - name: Update feeds
