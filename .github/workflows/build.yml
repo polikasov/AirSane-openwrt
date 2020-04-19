@@ -5,8 +5,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: openwrtorg/sdk:ramips-mt7621-19.07.2
     steps:
-      - uses: docker://openwrtorg/sdk:ramips-mt7621-19.07.2
       - name: Add feeds
         run: echo "src-git airsaned https://github.com/tbaela/AirSane-openwrt.git" >> feeds.conf.default
       - name: Update feeds
