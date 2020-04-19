@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    paths:
+      - 'airsaned/**'
+      - '.github/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: openwrtorg/sdk:ramips-mt7621-19.07.2
+    defaults:
+      run:
+        working-directory: /home/build/openwrt
+    steps:
+      - name: Add feeds
+        run: echo "src-git airsaned https://github.com/tbaela/AirSane-openwrt.git^${GITHUB_SHA}" >> feeds.conf.default
+      - name: Update feeds
+        run: ./scripts/feeds update base packages airsaned
+      - name: Make defconfig
+        run: make defconfig
+      - name: Install feeds
+        run: ./scripts/feeds install airsaned
+      - name: Compile
+        run: make package/airsaned/compile -j$(nproc)
