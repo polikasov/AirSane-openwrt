@@ -12,7 +12,7 @@ echo "src-git airsaned https://github.com/tbaela/AirSane-openwrt.git" >> feeds.c
 
 Update feeds
 ```
-./scripts/feeds update -a && make defconfig && ./scripts/feeds install -a
+./scripts/feeds update base packages airsaned && make defconfig && ./scripts/feeds install airsaned
 ```
 ### Compile
 ```
