@@ -10,8 +10,6 @@ jobs:
       run:
         working-directory: /home/build/openwrt
     steps:
-      - name: debug
-        run: pwd && ls -la
       - name: Add feeds
         run: echo "src-git airsaned https://github.com/tbaela/AirSane-openwrt.git" >> feeds.conf.default
       - name: Update feeds
@@ -19,4 +17,4 @@ jobs:
       - name: Install feeds
         run: ./scripts/feeds install -a
       - name: Compile
-        run: echo -e "Using $(nproc) threads" && make package/airsaned/compile V=s -j$(nproc)
+        run: make ./package/airsaned/compile V=s -j$(nproc)
