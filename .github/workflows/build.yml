@@ -5,14 +5,10 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: openwrtorg/sdk:ramips-mt7621-19.07.2
-      options: --workdir=/home/build/openwrt
-      env:
-        HOME: /home/build
+    container: openwrtorg/sdk:ramips-mt7621-19.07.2
     steps:
       - name: debug
-        run: pwd && ls -la /home/build/openwrt
+        run: cd /home/build/openwrt && ls -la
       - name: Add feeds
         run: echo "src-git airsaned https://github.com/tbaela/AirSane-openwrt.git" >> feeds.conf.default
       - name: Update feeds
