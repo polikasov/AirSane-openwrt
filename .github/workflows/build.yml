@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     container: openwrtorg/sdk:ramips-mt7621-19.07.2
     steps:
-      - uses: docker://elixir:1.9-alpine
+      - uses: docker://openwrtorg/sdk:ramips-mt7621-19.07.2
       - name: debug
         run: pwd && uname -a
       - name: Add feeds
